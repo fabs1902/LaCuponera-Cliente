@@ -1,12 +1,66 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LaCuponera</title>
-</head>
-<body>
+    <link href="/LaCuponera/View/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/LaCuponera/View/assets/css/styles.css" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- include the script -->
+    <script src="/LaCuponera/View/assets/js/alertify/alertify.min.js"></script>
+    <!-- include the style -->
+    <link rel="stylesheet" href="/LaCuponera/View/assets/js/alertify/css/alertify.min.css" />
+    <!-- include a theme -->
+    <link rel="stylesheet" href="/LaCuponera/View/assets/js/alertify/css/themes/default.min.css" />
     
+    <title>Login | La Cuponera</title>
+</head>
+
+<body style="background-color: #7D2972; height: 100%; width: 100%;">
+<main>
+		<div class="container" style = "height: 100%; width:100%">
+			<div class="row justify-content-center">
+				<div class="col-md-6">					
+					<div class="card cardShadow" style = "margin-top: 30%; height: 450px; width:370px; margin-left: 17%;">
+						<div class="card-body">
+							<form id = "formLogin" name = "formLogin" action = "/LaCuponera/sesion/Iniciar" method="POST">
+								<div class="row">									
+									<h4 class = "text-center" style = "font-family: 'Smack Boom'; font-size:30px; color: #7D2972;">La Cuponera</h4>									
+									<hr>
+									<h4 class = "text-center" style="color: #7D2972;"><b>¡Bienvenido!</b></h4>
+								</div>
+								<div class="row">
+									<div class="mb-3">
+										<label for="correo" class="form-label" style = "font-size: 19px">Correo</label>
+										<input type="email" class="form-control inputBorder" id="correo" name = "correo" placeholder="Ingrese correo">
+									</div>
+								</div>
+								<div class="row">
+									<div class="mb-3">
+										<label for="contrasenia" class="form-label" style = "font-size: 19px">Contraseña</label>
+										<input type="password" class="form-control inputBorder" id="contrasenia" name = "contra" placeholder="Ingrese contraseña">
+									</div>
+								</div>									
+								<div class="container" style = "margin-top: 20px">
+									<div class="row">									
+										<button type="submit" class="btn btn-primary" name="iniciar">Ingresar</button>
+									</div>
+								</div>	
+								<div class="container" style = "margin-top:10px">
+									<div class="row">
+										<div class ="col-12 text-center">
+											<a href="/LaCuponera/View/recuperarContra.php/">Olvidé mi contraseña</a>
+										</div>
+									</div>	
+								</div>											
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>    
+	</main>
 </body>
 </html>
