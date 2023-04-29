@@ -1,0 +1,73 @@
+@font-face {
+    font-family: 'Smack Boom';
+    src: url('../fonts/smack_boom/Smack\ Boom.ttf');
+}
+
+.cardShadow{
+    border-radius: 0.5em;
+}
+
+
+.inputBorder{
+    border-color: black;
+}
+
+.inputBorder:hover{
+    border-color: #7D2972;
+}
+
+.navbarCustom{
+    background-color: #7D2972;
+    color: white;
+}
+
+.list li:last-child {
+    float: right;
+}
+
+.listElement{
+    color: white;
+}
+
+ul li:hover{
+    background-color: white;
+    color: #7D2972;
+    border-radius: 6px;   
+}
+.imgPrincipal{
+    height: 500px;
+    width: 100%;
+}
+.linea{
+    border-top: 5px solid #7D2972;
+    border-radius: 0.5em;
+    height: 3px;
+    padding: 0;
+    margin: 20px auto 0 auto;
+}
+
+.textoMorado{
+    color: #7D2972;
+}
+
+.cartaTitulo{
+    background-color: #7D2972;
+    color: white;
+}
+
+.cartaTitulo:hover{
+    background-color: white;
+    border-color: #7D2972;
+    color: #7D2972;
+    
+}
+
+.btnMorado{
+    background-color: #7D2972;
+}
+
+.btnMorado:hover{
+    background-color: white;
+    border-color: #7D2972;
+    color: #7D2972;
+}
