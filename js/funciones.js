@@ -2,6 +2,13 @@ function obtenerCupon()
 {    
     var codigoC = $("#codigoC").val().trim();
     let contenido = "";
+
+    var fechaActual = new Date();
+    var dia = fechaActual.getDate();
+    var mes = fechaActual.getMonth() + 1; // Sumamos 1 porque los meses comienzan en cero
+    var anio = fechaActual.getFullYear();
+    var fechaFormateada = anio+"-"+mes+"-"+dia;
+
     if(codigoC != "")
     {
         $.ajax({
@@ -16,7 +23,10 @@ function obtenerCupon()
             success : function(response) {
                 //console.log(response.cupon);
                if(response.cupon != null){
-                    if(response.cupon.Estado == 1)   
+                    var fechaA = new Date(fechaFormateada);
+                    var fechaV = new Date(response.cupon.fechaFin);
+                    //alert((fechaA.getTime() >= fechaV.getTime()));
+                    if(response.cupon.Estado == 1 && fechaA.getTime() <= fechaV.getTime())   
                     {
                         contenido+= `
                         <h4 class="card-title" style="color: #7d2972">${response.cupon.titulo}</h4>
@@ -63,13 +73,19 @@ function obtenerCupon()
                         </div>                    
                         `;
                         $("#cuerpoCarta").html(contenido);
-                    }else{
+                    }else if(response.cupon.Estado == 1 && fechaA.getTime() > fechaV.getTime()){
+                        Swal.fire(
+                            'Cupón vencido',
+                            'El cupón que ha ingresado ya se encuentra vencido',
+                            'warning'
+                          )
+                    } else{
                         Swal.fire(
                             'Cupón canjeado',
                             'El cupón que ha ingresado ya se encuentra canjeado',
                             'warning'
                           )
-                    }                                             
+                    }                                            
                }else{
                 Swal.fire(
                     'No se encontró el cupón',
