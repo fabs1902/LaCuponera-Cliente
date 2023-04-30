@@ -4,31 +4,23 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="../css/bootstrap.min.css"
-      rel="stylesheet"
+    <link href="../css/bootstrap.min.css"rel="stylesheet"
     />
     <link href="../css/styles.css" rel="stylesheet" />
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- include the script -->
     <script src="../js/alertify/alertify.min.js"></script>
     <!-- include the style -->
-    <link
-      rel="stylesheet"
-      href="../js/alertify/css/alertify.min.css"
-    />
+    <link rel="stylesheet" href="../js/alertify/css/alertify.min.css"/>
     <!-- include a theme -->
-    <link
-      rel="stylesheet"
-      href="../js/alertify/css/themes/default.min.css"
-    />
+    <link rel="stylesheet" href="../js/alertify/css/themes/default.min.css"/>
+    <script src="../js/jquery-3.6.4.min.js"></script>
+    <script src="../js/funciones.js"></script>
+	 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Canjear cupon | La Cuponera</title>
   </head>
   <body style="background-color: #fffbf7">
-    <div
-      class="container-fluid"
-      style="background-color: #7d2972; height: 50px"
-    >
+    <div class="container-fluid" style="background-color: #7d2972; height: 50px">
       <a
         class="navbar-brand listElement"
         href="#"
@@ -70,7 +62,7 @@
       </div>
       <div class="container-fluid">
         <div class="row" style="margin-top: 20px">
-          <form method="POST" action="/LaCuponera/offers/buscarEmpresa/">
+         <form method="POST" id="frmBuscador" onsubmit="return false">
             <h5 style="color: #7d2972; font-weight: bold">Buscador</h5>
             <div class="row">
               <div class="col-8" style="width: 1350px">
@@ -80,12 +72,12 @@
                   aria-label="Sizing example input"
                   aria-describedby="inputGroup-sizing-default"
                   placeholder="Ingrese el cupon a buscar..."
-                  name="nombre"
+                  name="codigoC"
+						id="codigoC"
                 />
               </div>
               <div class="col-2" style="padding: 0; width: 160px">
-                <button
-                  type="submit"
+                <button                  
                   class="btn btn-primary text-center"
                   style="
                     background-color: #7d2972;
@@ -95,56 +87,20 @@
                     font-size: 17px;
                     font-weight: bold;
                   "
-                  name="buscar"
+                  name="buscar" 
+						onclick="obtenerCupon()"                
                 >
                   Buscar
                 </button>
               </div>
             </div>
-          </form>
+         </form>
         </div>
       </div>
       <div class="container-fluid">
         <div class="card" style="margin-top: 20px">
-          <div class="card-body">
-            <h4 class="card-title" style="color: #7d2972">Nombre del cupon</h4>
-            <hr />
-            <div class="row">
-              <div class="col-2">
-                <h6 class="card-subtitle mb-2 text-body-secondary">Código:</h6>
-                <p class="card-text">codigo del cupón</p>
-              </div>
-              <div class="col-2">
-                <h6 class="card-subtitle mb-2 text-body-secondary">Estado:</h6>
-                <p class="card-text">activo</p>
-              </div>
-              <div class="col-3">
-                <h6 class="card-subtitle mb-2 text-body-secondary">Empresa:</h6>
-                <p class="card-text">Pollo campero</p>
-              </div>
-              <div class="col-3">
-                <h6 class="card-subtitle mb-2 text-body-secondary">Precio:</h6>
-                <p class="card-text">$ 8.99</p>
-              </div>
-              <div class="col-1">
-                <div class="col-2" style="padding: 0; width: 160px">
-                    <button
-                      type="submit"
-                      class="btn btn-success text-center"
-                      style="
-                        color: white;
-                        height: 37px;
-                        width: 150px;
-                        font-size: 17px;
-                        font-weight: bold;
-                      "
-                      name="canjear"
-                    >
-                      Canjear
-                    </button>
-                  </div>
-              </div>
-            </div>
+          <div class="card-body" id="cuerpoCarta">
+            
           </div>
         </div>
       </div>
