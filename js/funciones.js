@@ -7,8 +7,7 @@ function obtenerCupon()
     var dia = fechaActual.getDate();
     var mes = fechaActual.getMonth() + 1; // Sumamos 1 porque los meses comienzan en cero
     var anio = fechaActual.getFullYear();
-    var fechaFormateada = anio+"-"+mes+"-"+dia;
-
+    var fechaFormateada = anio+"-"+mes+"-"+dia;    
     if(codigoC != "")
     {
         $.ajax({
@@ -18,7 +17,7 @@ function obtenerCupon()
             dataType : 'json',
             contentType: 'application/json',
             headers: {
-              'Authorization': 'Bearer ' + 'k1MTnhBlVMtWh2XZ6k8HEQYyz2pC31SphQpg1Y6z'
+              'Authorization': 'Bearer ' + localStorage.getItem("token")
             },
             success : function(response) {
                 //console.log(response.cupon);
@@ -127,6 +126,42 @@ function obtenerCupon()
             'warning'
           )
     }
-    
-    
+
+}
+
+function login()
+{
+    var usuario = $('#correo').val().trim();
+    var password = $('#contrasenia').val().trim();
+    $.ajax({
+        url : 'http://127.0.0.1:8000/api/login',
+        data : { 
+            usuario : usuario,
+            contra:  password
+        },
+        type : 'POST', 
+        dataType : 'json',             
+        success : function(response) {
+            if(response.error == false)
+            {                             
+                localStorage.setItem("token",response.access_token);
+                window.location.href = "html/canjearCupon.html";
+            }else{
+                Swal.fire(
+                    'Datos incorrectos',
+                    'Debe de verificar los datos ingresados',
+                    'warning'
+                  )
+            }
+        },
+        error : function(jqXHR, status, error) {
+          alert('Disculpe, existió un problema'+error);
+        },
+    });
+}
+
+function cerrarSesion()
+{
+    localStorage.removeItem("token");
+    window.location.href = "../index.html";
 }
