@@ -51,6 +51,7 @@ function obtenerCupon()
                             <h6 class="card-subtitle mb-2 text-body-secondary">DUI:</h6>
                             <p class="card-text">${response.cupon.dui}</p>
                         </div>
+                        <input type="hidden" id="codigoCupon" value="${response.cupon.codigoCupon}">
                         <div class="col-1">
                             <div class="col-2" style="padding: 0; width: 160px">
                                 <button                      
@@ -64,6 +65,7 @@ function obtenerCupon()
                                     "
                                     name="canjear"
                                     id="btnCanjear"
+                                    onclick="canjearCupon()"
                                 >
                                 Canjear
                                 </button>
@@ -164,4 +166,51 @@ function cerrarSesion()
 {
     localStorage.removeItem("token");
     window.location.href = "../index.html";
+}
+
+function canjearCupon()
+{
+    $codigo = $('#codigoCupon').val();
+    if($codigo != "")
+    {
+        $.ajax({
+            url : 'http://127.0.0.1:8000/api/canjearCupon',
+            data : { codigoCupon : $codigo },
+            type : 'PUT', 
+            dataType : 'json',           
+            headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem("token")
+            },
+            success : function(response) {               
+                if(response.Cupones == 1){
+                    Swal.fire({
+                        title: 'Cupón canjeado',
+                        icon: 'success',                      
+                        confirmButtonText: 'Aceptar',                       
+                      }).then((result) => {                       
+                        if (result.isConfirmed) {
+                          window.location.href = "canjearCupon.html";
+                        } 
+                      })
+                      
+                }else{
+                    Swal.fire(
+                        'Error al canjear',
+                        'No se ha podido canjear el cupón, pongase en contacto con el administrador',
+                        'error'
+                      )
+                }
+            },
+            error : function(jqXHR, status, error) {
+            alert('Disculpe, existió un problema');
+            },
+        });
+    }else{
+        Swal.fire(
+            'Código vacio',
+            'No se ha encontrado código de cupón que se canjeara',
+            'warning'
+          )
+    }
+        
 }
